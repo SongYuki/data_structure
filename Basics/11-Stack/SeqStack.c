@@ -27,11 +27,13 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
+typedef void* TSeqStackNode;
+
 typedef struct _tag_SeqStack
 {
 	int capacity;
 	int size;
-	void* item;
+	TSeqStackNode* item;
 }TSeqStack;
 
 SeqStack* SeqStack_Create(int capacity)
@@ -101,7 +103,7 @@ int SeqStack_Push(SeqStack* stack, void* Item)
 void* SeqStack_Pop(SeqStack* stack)
 {
 	TSeqStack* sStack = (TSeqStack*)stack;
-	(void*)ret = SeqStack_Top(sStack);
+	SeqStackNode* ret = SeqStack_Top(sStack);
 
 	if (ret!=NULL)
 	{
@@ -113,7 +115,7 @@ void* SeqStack_Pop(SeqStack* stack)
 void* SeqStack_Top(SeqStack* stack)
 {
 	TSeqStack* sStack = (TSeqStack*)stack;
-	(void*)ret = NULL;
+	SeqStackNode* ret = NULL;
 
 	if (sStack != NULL)
 	{

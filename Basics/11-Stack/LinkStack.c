@@ -29,7 +29,7 @@ int main(int argc, char * argv[])
 
 typedef struct _tag_LinkStackNode
 {
-	LinkStackNode header;
+	LinkStackNode* next;
 	void* item;
 }TLinkStackNode;
 
@@ -67,7 +67,7 @@ void LinkStack_Clear(LinkStack* stack)
 	}
 }
 
-int LinkStack_Push(LinkStack* stack, void* item);
+int LinkStack_Push(LinkStack* stack, void* item)
 {
 	TLinkStack* sStack = (TLinkStack*)stack;
 	TLinkStackNode* node = (TLinkStackNode*)malloc(sizeof(TLinkStackNode));
@@ -75,14 +75,15 @@ int LinkStack_Push(LinkStack* stack, void* item);
 
 	if (ret)
 	{
-		node->item = item;
+	//	node->item = item;
 		LinkStackNode* current = (LinkStackNode*)sStack;
 		if (current->next!=NULL)
 		{
 			current = current->next;
 		}
 
-		item->next = current->next;
+	//	item->next = current->next;
+		node->next = current->next;
 		current->next = item;
 
 		sStack->length++;
@@ -100,7 +101,7 @@ void* LinkStack_Pop(LinkStack* stack)
 	LinkStackNode* node = NULL;
 	if (sStack!=NULL)
 	{
-		node->item = item;
+	//	node->item = item;
 		LinkStackNode* current = (LinkStackNode*)sStack;
 
 		if (LinkStack_Size(sStack)==0)
@@ -126,7 +127,7 @@ void* LinkStack_Pop(LinkStack* stack)
 void* LinkStack_Top(LinkStack* stack)
 {
 	TLinkStack* sStack = (TLinkStack*)stack;
-	TLinkStackNode* node = NULL;
+	TLinkStackNode* ret = NULL;
 
 	if (sStack != NULL)
 	{

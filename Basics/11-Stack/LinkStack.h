@@ -3,10 +3,6 @@
 
 typedef void LinkStack;
 typedef struct _tag_LinkStackNode LinkStackNode;
-struct _tag_LinkStackNode
-{
-	LinkStackNode* next;
-};
 
 LinkStack* LinkStack_Create();
 

@@ -47,7 +47,7 @@ SeqStack* SeqStack_Create(int capacity)
 	{
 		ret->capacity = capacity;
 		ret->size = 0;
-		ret->node = (void*)(ret + 1);
+		ret->item = (void*)(ret + 1);
 	}
 	return ret;
 }
@@ -79,7 +79,7 @@ int SeqStack_Size(SeqStack* stack)
 	return ret;
 }
 
-int SeqStack_Push(SeqStack* stack, void *item)
+int SeqStack_Push(SeqStack* stack, void* Item)
 {
 	TSeqStack* sStack = (TSeqStack*)stack;
 	int ret = (sStack != NULL);
@@ -88,9 +88,9 @@ int SeqStack_Push(SeqStack* stack, void *item)
 
 	if (ret)
 	{
-		int pos = sStack->size;
+		int pos = sStack->size-1;
 
-		sStack->item[pos] = (void*)item;
+		sStack->item[pos] = (void*)Item;
 
 		sStack->size++;
 	}
